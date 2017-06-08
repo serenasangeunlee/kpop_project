@@ -1,0 +1,113 @@
+<div class="page-header">
+  <a href="/videos/new" class="btn btn-lg btn-success">New Video</a>
+</div>
+
+<div class="row">
+  <% @videos.each do |video| %>
+   <div class="col-md-8 col-md-offset-2">
+     <div class="panel panel-default">
+       <div class="panel-heading">
+         <h3 class="panel-title">
+          <a href="/videos/<%= video.id %>"><%= video.caption %></a>
+           <small><%= time_ago_in_words(video.updated_at) %> ago </small>
+         </h3>
+       </div>
+
+      <div class="panel-body">
+        <a href="/videos/<%= video.id %>">
+          <iframe width="560" height="315" src="<%= video.image %>" frameborder="0"></iframe>
+        </a>
+        <p>
+         <form action="/create_like" method="post">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+          <input type="hidden" name="video_id" value="<%= video.id %>">
+
+          <input type="hidden" name="user_id" value="<%= video.user_id %>">
+
+          <% if video.likes.pluck(:user_id).include? current_user.id%>
+          <% like=Like.where(:user_id => video.user_id, :video_id => video.id) %>
+
+          <a href="/delete_like/<%=like.pluck(:id).shift %>"> <i class="fa fa-heart"></i></a>
+          <% else %>
+          <button class="btn btn-link">
+          <i class="fa fa-heart-o"></i>
+          <% end %>
+          </button>
+
+          <% if !video.likes.pluck(:user_id).any? %>
+          <small class="text-muted">be the first to like this</small>
+          <% else %>
+          <% videos_disp=video.likes  %>
+          <% username_disp=User.find(videos_disp.pluck(:user_id)) %>
+          <%= username_disp.pluck(:username).to_sentence %> like this
+          <% end %>
+                  </form>
+
+              </p>
+
+              <ul class="media-list">
+                <% video.comments.each do |comm| %>
+                <li class="media">
+                  <div class="media-body">
+                    <h6 class="media-heading">
+
+                        <a href="/users/<%= comm.user_id %>"><%= comm.user.username %></a>
+                        <small>
+                          <%= time_ago_in_words(comm.updated_at) %> ago
+                        </small>
+                      </h6>
+                      <%= comm.body %>
+                    </div>
+                    <% end %>
+                </li>
+
+
+                <li class="media">
+                  <div class="media-body">
+                    <form action="/create_comment" method="post">
+                      <!-- Hidden input for authenticity token to protect from forgery -->
+                      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+                      <input type="hidden" name="video_id" value="<%= video.id %>">
+
+                      <input type="hidden" name="user_id" value="<%= video.user_id %>">
+
+                      <!-- Label and input for body -->
+                      <div class="form-group">
+                        <label for="body" class="sr-only">
+                          Body
+                        </label>
+
+                        <div class="input-group">
+                          <input type="text" id="body" name="body" class="form-control" placeholder="Add a comment..." required>
+
+        
+                        </div><!-- /input-group -->
+
+                        <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                          <% if current_user==video.user %>
+                          <div class="btn-group btn-group-justified">
+                              <a href="/videos/<%= video.id %>/edit" class="btn btn-warning">
+                                <i class="fa fa-edit"></i>
+                              </a>
+                              <a href="/delete_video/<%= video.id %>" class="btn btn-danger" rel="nofollow">
+                                <i class="fa fa-trash-o"></i>
+                              </a>
+
+                          </div>
+                          <% end %>
+                        </div>
+                      </div>
+                      </div>
+                    </form>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>

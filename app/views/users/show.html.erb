@@ -1,0 +1,18 @@
+<div class="page-header">
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Username</dt>
+      <dd><%= @user.username %></dd>
+
+      <dt>E-mail</dt>
+      <dd><%= @user.email %></dd>
+        <dt>Video</dt>
+          <% @user.videos.each do |video| %>
+        <dd><a href="/videos/<%= video.id %>"><img src="<%=video.image%>"></a></dd>
+        <dd><%= video.caption %></dd>
+    <% end %>
+    </div>
+  </div>
+</div>
