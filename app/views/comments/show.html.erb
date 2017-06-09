@@ -1,18 +1,16 @@
 <div class="page-header">
-  <h3>Comment #<%= @comment.id %></h3>
 </div>
 
 <div class="row">
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
+      <dt>User</dt>
+      <dd><%= @comment.user.username %></dd>
       <dt>video</dt>
-      <dd><%= @comment.video_id %></dd>
-
-      <dt>Body</dt>
+      <dd><%= @comment.video.caption %></dd>
+      <dt>Comment</dt>
       <dd><%= @comment.body %></dd>
 
-      <dt>User</dt>
-      <dd><%= @comment.user_id %></dd>
 
     </dl>
 

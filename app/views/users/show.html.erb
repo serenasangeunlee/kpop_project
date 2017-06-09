@@ -10,9 +10,13 @@
       <dd><%= @user.email %></dd>
         <dt>Video</dt>
           <% @user.videos.each do |video| %>
-        <dd><a href="/videos/<%= video.id %>"><img src="<%=video.image%>"></a></dd>
+        <dd><a href="/videos/<%= video.id %>">  <iframe width="560" height="315" src="<%= video.image %>" frameborder="0"></iframe></a></dd>
         <dd><%= video.caption %></dd>
     <% end %>
+    <dt>Comment</dt>
+      <% @user.comments.each do |comment| %>
+      <dd><%= comment.body %></dd>
+     <% end %>
     </div>
   </div>
 </div>

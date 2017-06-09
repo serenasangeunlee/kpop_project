@@ -1,5 +1,4 @@
 <div class="page-header">
-  <h3>video #<%= @video.id %></h3>
 </div>
 
 <div class="row">
@@ -7,12 +6,8 @@
     <dl class="dl-horizontal">
       <dt>User</dt>
       <dd><%= @video.user.username %></dd>
-
-
-
-      <dt>Image</dt>
-      <dd><img src="<%= @video.image %>"></dd>
-
+      <dt>Video</dt>
+      <dd><iframe width="560" height="315" src="<%= @video.image %>" frameborder="0"></iframe></dd>
       <dt>Caption</dt>
       <dd><%= @video.caption %></dd>
 

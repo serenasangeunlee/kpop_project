@@ -9,7 +9,6 @@
 <% end %>
 
 <div class="page-header">
-  <h3>Edit Comment #<%= @comment.id %></h3>
 </div>
 
 <div class="row">
@@ -20,11 +19,8 @@
 
       <!-- Label and input for video_id -->
       <div class="form-group">
-        <label for="video_id" class="control-label">
-          video
-        </label>
 
-        <input type="text" id="video_id" name="video_id" placeholder="video" class="form-control" value="<%= @comment.video_id %>">
+        <input type="hidden" id="video_id" name="video_id" placeholder="video" class="form-control" value="<%= @comment.video_id %>">
       </div>
 
       <!-- Label and input for body -->
@@ -38,11 +34,8 @@
 
       <!-- Label and input for user_id -->
       <div class="form-group">
-        <label for="user_id" class="control-label">
-          User
-        </label>
 
-        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @comment.user_id %>">
+        <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @comment.user_id %>">
       </div>
 
       <button class="btn btn-warning">

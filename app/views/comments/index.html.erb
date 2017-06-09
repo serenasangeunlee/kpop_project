@@ -4,13 +4,15 @@
   <div class="col-md-12">
     <table class="table table-striped table-hover">
       <tr>
+        <th>User</th>
         <th>Video</th>
-        <th>Comments</th>
+        <th>Comment</th>
         <th>Actions</th>
       </tr>
 
       <% @comments.each do |comment| %>
       <tr>
+        <td><%= comment.user.username %></td>
         <td><%= comment.video.caption %></td>
         <td><%= comment.body %></td>
         <td>

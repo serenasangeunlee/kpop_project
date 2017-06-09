@@ -1,15 +1,14 @@
 <div class="page-header">
-  <h3>Like #<%= @like.id %></h3>
 </div>
 
 <div class="row">
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
       <dt>Video</dt>
-      <dd><%= @like.video_id %></dd>
+      <dd><%= @like.video.caption %></dd>
 
       <dt>User</dt>
-      <dd><%= @like.user_id %></dd>
+      <dd><%= @like.user.username %></dd>
 
     </dl>
 

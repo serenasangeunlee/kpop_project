@@ -58,7 +58,7 @@ class UsersController < ApplicationController
 
    def destroy
      @comment = Comment.find(params[:id])
-     
+
      @comment.destroy
      if URI(request.referer).path == "/comments/#{@comment.id}"
        redirect_to("/", :notice => "Comment deleted.")

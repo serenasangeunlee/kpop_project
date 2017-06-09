@@ -40,9 +40,9 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li><a href="/videos">K-POP</a></li>
-          <li><a href="/comments">All Comments</a></li>
-          <li><a href="/users">All Users</a></li>
+          <li><a href="/videos"><i class="fa fa-music" aria-hidden="true"></i> K-POP</a></li>
+          <li><a href="/comments"><i class="fa fa-comments" aria-hidden="true"></i> All Comments</a></li>
+          <li><a href="/users"><i class="fa fa-user" aria-hidden="true"></i> All Users</a></li>
           <% if current_user!= nil %>
           <li><a href="/users/<%= current_user.id %>">My Wall</a></li>
           <% end %>
